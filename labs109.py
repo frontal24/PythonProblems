@@ -66,3 +66,67 @@ def pyramid_blocks(n, m, h):
     for i in range(h):
         result += (n+i)*(m+i)
     return result
+
+#Cyclops numbers
+# def is_cyclops(n):
+#     if n==0: return True
+#     n_as_str = str(n)
+#     print("{},{},{}".format(n_as_str, type(n_as_str), len(n_as_str)))
+#     if (len(n_as_str) % 2) == 0:
+#         return False
+#     mid = int(len(n_as_str)/2)
+#     if n_as_str[mid] == str(0):
+#         return True
+#     return False
+
+#Domino cycle
+def domino_cycle(tiles):
+    if len(tiles)==0: return True
+    # if len(tiles) ==1:
+    #     if tiles[0][0] ==tiles[0][1]:return True
+    #     else: return False
+    first_item = tiles[0][0]
+    last_item = tiles[0][1]
+    for (f,l) in tiles[1:]:
+        if (last_item != f):
+            return False
+        last_item = l
+    if (last_item != first_item):
+        return False
+    return True
+
+#Count dominators
+def count_dominators(items):
+    if len(items) == 0: return 0
+    if len(items) == 1: return 1
+    num_dominators = 1#this should be 1
+    cur_max = items[-1]
+    for index in range(len(items)-2,-1,-1):
+        if items[index] > cur_max:
+            num_dominators += 1
+            cur_max = items[index]
+    return num_dominators
+
+#Extract increasing integers from digit string
+
+def extract_increasing(digits):
+    if len(digits) == 0: return []
+    leftover = ""
+    result = [int(digits[0])]
+    for d in digits[1:]:
+        lastIdx = (len(result) - 1)
+        leftover = leftover + d
+        if int(leftover) > result[lastIdx]:
+            result.append(int(leftover))
+            leftover = ""
+    return result
+
+
+#Words that contain given letter sequence
+#def words_with_letters(words, letters):
+
+
+
+
+
+
